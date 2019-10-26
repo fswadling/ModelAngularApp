@@ -1,0 +1,7 @@
+<h1>Welcome! please select a project</h1>
+<ul *ngIf="projects$ | async as projects; else loading">
+  <li *ngFor="let project of projects">
+    <a>{{project.name}}</a>
+  </li>
+</ul>
+<ng-template #loading>Loading...</ng-template>
