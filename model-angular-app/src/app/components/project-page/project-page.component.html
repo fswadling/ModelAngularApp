@@ -1,1 +1,9 @@
 <h1>{{projectName$ | async}}</h1>
+
+<ul *ngIf="projectExposures$ | async as exposures; else loading">
+  <li *ngFor="let exposure of exposures">
+    Maturity Date: {{exposure.maturityDate}} Volume: {{exposure.volume}}
+  </li>
+</ul>
+
+<ng-template #loading>Loading...</ng-template>

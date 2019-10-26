@@ -3,6 +3,7 @@ import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/r
 import { Project } from '../models/project';
 import { Observable } from 'rxjs';
 import { ProjectService } from '../backend-services/project.service';
+import { tap, share, shareReplay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,8 @@ export class ProjectResolver implements Resolve<Project> {
 
   resolve(route: ActivatedRouteSnapshot, rstate: RouterStateSnapshot): Observable<Project> {
     const projectId: number = Number(route.params.projectId);
-    return this.projectService.getProject(projectId);
+    return this.projectService.getProject(projectId).pipe(
+      shareReplay(1)
+    );
   }
 }
