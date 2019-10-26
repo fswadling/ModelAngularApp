@@ -7,13 +7,15 @@ import { ProjectSelectionComponent } from './components/project-selection/projec
 import { ProjectPageComponent } from './components/project-page/project-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProjectFormComponent } from './components/project-form/project-form.component';
+import { ProjectFormRowComponent } from './components/project-form-row/project-form-row.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProjectSelectionComponent,
     ProjectPageComponent,
-    ProjectFormComponent
+    ProjectFormComponent,
+    ProjectFormRowComponent
   ],
   imports: [
     BrowserModule,

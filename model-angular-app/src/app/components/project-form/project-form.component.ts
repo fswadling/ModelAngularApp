@@ -25,8 +25,9 @@ export class ProjectFormComponent implements OnInit, OnChanges {
   createFormGroup(project: Project) {
     return this.formBuilder.group({
       name: this.formBuilder.control(project.name),
-      exposures: this.formBuilder.array(project.exposures)
+      exposures: this.formBuilder.array(project.exposures.map(e => this.formBuilder.group(e)))
     });
   }
+
 
 }
