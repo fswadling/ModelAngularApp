@@ -16,10 +16,6 @@ export class ProjectPageComponent implements OnInit {
 
   project$: Observable<Project> = this.actr.data.pipe(map(data => data.project));
 
-  projectName$: Observable<string> = this.project$.pipe(map(p => p.name));
-
-  projectExposures$: Observable<Exposure[]> = this.project$.pipe(map(p => p.exposures));
-
   ngOnInit() {
   }
 
