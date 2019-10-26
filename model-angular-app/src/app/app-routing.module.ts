@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ProjectSelectionComponent } from './components/project-selection/project-selection.component';
 import { ProjectPageComponent } from './components/project-page/project-page.component';
+import { ProjectResolver } from './resolvers/project-resolver';
 
 const routes: Routes = [
   {
@@ -9,8 +10,11 @@ const routes: Routes = [
     component: ProjectSelectionComponent
   },
   {
-    path: 'project/:id',
-    component: ProjectPageComponent
+    path: 'project/:projectId',
+    component: ProjectPageComponent,
+    resolve: {
+      project: ProjectResolver
+    }
   }
 ];
 
