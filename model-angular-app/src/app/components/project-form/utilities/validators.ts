@@ -13,9 +13,14 @@ export function ExposureVolumesGreaterThanOrEqualToMinimumVolume(control: Abstra
 
   exposuresControl.controls.forEach(exposure => {
     const exposureListItem: ExposureListItem = exposure.value;
+    const exposureFormGroup = exposure as FormGroup;
+
     if (exposureListItem.volume < minimumVolume) {
       isExposureVolumeInvalid = true;
-      exposure.setErrors({...errors}, { emitEvent: false });
+      exposureFormGroup.controls.volume.setErrors({...errors});
+    } else if (exposureFormGroup.controls.volume.hasError('violatesMinimumVolume')) {
+      exposureFormGroup.controls.volume.setErrors({violatesMinimumVolume: null});
+      exposureFormGroup.controls.volume.updateValueAndValidity();
     }
   });
 

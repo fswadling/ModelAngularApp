@@ -6,7 +6,7 @@ import { FormGroup, ControlContainer } from '@angular/forms';
   templateUrl: './project-form-row.component.html',
   styleUrls: ['./project-form-row.component.scss']
 })
-export class ProjectFormRowComponent implements OnInit, OnChanges {
+export class ProjectFormRowComponent implements OnInit {
   formGroup: FormGroup;
 
   constructor(private controlContainer: ControlContainer) { }
@@ -14,9 +14,4 @@ export class ProjectFormRowComponent implements OnInit, OnChanges {
   ngOnInit() {
     this.formGroup = this.controlContainer.control as FormGroup;
   }
-
-  ngOnChanges() {
-
-  }
-
 }

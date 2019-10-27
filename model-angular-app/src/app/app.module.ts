@@ -8,6 +8,7 @@ import { ProjectPageComponent } from './components/project-page/project-page.com
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProjectFormComponent } from './components/project-form/project-form.component';
 import { ProjectFormRowComponent } from './components/project-form-row/project-form-row.component';
+import { IfErrorDirective } from './directives/if-error.directive';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { ProjectFormRowComponent } from './components/project-form-row/project-f
     ProjectSelectionComponent,
     ProjectPageComponent,
     ProjectFormComponent,
-    ProjectFormRowComponent
+    ProjectFormRowComponent,
+    IfErrorDirective
   ],
   imports: [
     BrowserModule,

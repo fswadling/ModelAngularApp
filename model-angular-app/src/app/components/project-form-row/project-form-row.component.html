@@ -1,4 +1,4 @@
 <div [formGroup]="formGroup">
   <label for="volume">volume:</label>
-  <input type="number" name="volume" formControlName="volume">
+  <input [appIfError]="'error-input'" type="number" name="volume" formControlName="volume">
 </div>
