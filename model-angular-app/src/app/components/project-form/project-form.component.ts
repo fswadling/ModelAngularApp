@@ -2,6 +2,7 @@ import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { Project } from 'src/app/models/project';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ExposureListItem } from 'src/app/models/exposure-list-item';
+import { ExposureVolumesGreaterThanOrEqualToMinimumVolume } from './utilities/validators';
 
 @Component({
   selector: 'app-project-form',
@@ -25,10 +26,15 @@ export class ProjectFormComponent implements OnInit, OnChanges {
   }
 
   createFormGroup(project: Project, exposures: ExposureListItem[]) {
-    return this.formBuilder.group({
+    return this.formBuilder.group(({
       name: project.name,
       minimumVolume: project.minimumVolume,
       exposures: this.formBuilder.array(exposures.map(e => this.formBuilder.group(e)))
+    }),
+    {
+      validators: [
+        ExposureVolumesGreaterThanOrEqualToMinimumVolume
+      ]
     });
   }
 }
