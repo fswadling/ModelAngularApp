@@ -1,18 +1,27 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Data } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { fromEvent, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-project-page',
   templateUrl: './project-page.component.html',
   styleUrls: ['./project-page.component.scss']
 })
-export class ProjectPageComponent implements OnInit {
+export class ProjectPageComponent implements OnInit, OnDestroy {
 
-  constructor(private actr: ActivatedRoute) { }
+  constructor() { }
 
-  data$: Observable<any> = this.actr.data;
+  private onLoadSubject = new Subject<any>();
+
+  data$ = this.onLoadSubject.asObservable();
+
+  onLoad(data) {
+    this.onLoadSubject.next(data);
+  }
 
   ngOnInit() {
+  }
+
+  ngOnDestroy() {
+    this.onLoadSubject.complete();
   }
 }
