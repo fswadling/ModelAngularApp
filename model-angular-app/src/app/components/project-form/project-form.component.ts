@@ -21,7 +21,6 @@ export class ProjectFormComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    debugger;
     this.formGroup = this.createFormGroup(this.project, this.exposures);
   }
 

@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ProjectSelectionComponent } from './components/project-selection/project-selection.component';
 import { ProjectPageComponent } from './components/project-page/project-page.component';
 import { ProjectResolver } from './resolvers/project-resolver';
+import { ExposuresListResolver } from './resolvers/exposures-list-resolver';
 
 const routes: Routes = [
   {
@@ -13,7 +14,8 @@ const routes: Routes = [
     path: 'project/:projectId',
     component: ProjectPageComponent,
     resolve: {
-      project: ProjectResolver
+      project: ProjectResolver,
+      exposures: ExposuresListResolver
     }
   }
 ];
