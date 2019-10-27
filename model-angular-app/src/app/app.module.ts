@@ -10,6 +10,7 @@ import { ProjectFormComponent } from './components/project-form/project-form.com
 import { ProjectFormRowComponent } from './components/project-form-row/project-form-row.component';
 import { IfErrorDirective } from './directives/if-error.directive';
 import { IfDirtyDirective } from './directives/if-dirty.directive';
+import { ProjectFormErrorsPipe } from './pipes/project-form-errors.pipe';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { IfDirtyDirective } from './directives/if-dirty.directive';
     ProjectFormRowComponent,
     IfErrorDirective,
     IfDirtyDirective,
+    ProjectFormErrorsPipe,
   ],
   imports: [
     BrowserModule,

@@ -6,4 +6,7 @@
   </div>
   <label for="minimumVolume">Minimum volume:</label>
   <input [appIfDirty]="'dirty-input'" name="minimumVolume" type="number" formControlName="minimumVolume">
+  <div ngClass="error-text" *ngFor="let error of (formGroup.errors | projectFormErrors)">
+    {{error}}
+  </div>
 </form>

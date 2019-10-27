@@ -3,13 +3,15 @@ import { Project } from 'src/app/models/project';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ExposureListItem } from 'src/app/models/exposure-list-item';
 import { ExposureVolumesGreaterThanOrEqualToMinimumVolume } from './utilities/validators';
+import { Observable } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-project-form',
   templateUrl: './project-form.component.html',
   styleUrls: ['./project-form.component.scss']
 })
-export class ProjectFormComponent implements OnInit, OnChanges {
+export class ProjectFormComponent implements OnChanges {
 
   @Input() project: Project;
   @Input() exposures: ExposureListItem[];
@@ -17,9 +19,6 @@ export class ProjectFormComponent implements OnInit, OnChanges {
   formGroup: FormGroup;
 
   constructor(private formBuilder: FormBuilder) { }
-
-  ngOnInit() {
-  }
 
   ngOnChanges() {
     this.formGroup = this.createFormGroup(this.project, this.exposures);
