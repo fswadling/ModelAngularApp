@@ -19,10 +19,6 @@ export function ExposureVolumesGreaterThanOrEqualToMinimumVolume(control: Abstra
     }
   });
 
-  if (isExposureVolumeInvalid) {
-    control.updateValueAndValidity();
-  }
-
   return isExposureVolumeInvalid
     ? {...errors}
     : null;

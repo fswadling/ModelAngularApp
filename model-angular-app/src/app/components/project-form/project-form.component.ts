@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { Project } from 'src/app/models/project';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ExposureListItem } from 'src/app/models/exposure-list-item';
 import { ExposureVolumesGreaterThanOrEqualToMinimumVolume } from './utilities/validators';
 
@@ -23,12 +23,13 @@ export class ProjectFormComponent implements OnInit, OnChanges {
 
   ngOnChanges() {
     this.formGroup = this.createFormGroup(this.project, this.exposures);
+    debugger;
   }
 
   createFormGroup(project: Project, exposures: ExposureListItem[]) {
     return this.formBuilder.group(({
-      name: project.name,
-      minimumVolume: project.minimumVolume,
+      name: [project.name, Validators.required],
+      minimumVolume: [project.minimumVolume, Validators.required],
       exposures: this.formBuilder.array(exposures.map(e => this.formBuilder.group(e)))
     }),
     {
