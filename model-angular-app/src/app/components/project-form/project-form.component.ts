@@ -1,10 +1,8 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { Project } from 'src/app/models/project';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ExposureListItem } from 'src/app/models/exposure-list-item';
 import { ExposureVolumesGreaterThanOrEqualToMinimumVolume } from './utilities/validators';
-import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-project-form',
@@ -29,6 +27,7 @@ export class ProjectFormComponent implements OnChanges {
       name: [project.name, Validators.required],
       minimumVolume: [project.minimumVolume, Validators.required],
       exposures: this.formBuilder.array(exposures.map(e => this.formBuilder.group({
+        id: e.id,
         volume: [e.volume, Validators.required]
       })))
     },

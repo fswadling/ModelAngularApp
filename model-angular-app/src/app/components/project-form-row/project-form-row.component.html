@@ -1,4 +1,5 @@
 <div [formGroup]="formGroup">
   <label for="volume">volume:</label>
   <input [appIfError]="'error-input'" [appIfDirty]="'dirty-input'" type="number" name="volume" formControlName="volume">
+  <button [routerLink]="[{ outlets: { 'exposure-details': ['exposure', getId()] } }]">Exposure Details</button>
 </div>

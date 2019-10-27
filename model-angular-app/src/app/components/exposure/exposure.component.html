@@ -1,0 +1,4 @@
+<h1>Exposure component</h1>
+<div *ngIf="data$ | async as data">
+  <app-exposure-form [exposure]="data.exposure"></app-exposure-form>
+</div>

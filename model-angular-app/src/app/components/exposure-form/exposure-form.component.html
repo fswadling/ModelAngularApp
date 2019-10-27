@@ -1,0 +1,10 @@
+<form [formGroup]="formGroup">
+  <label for="total-additional-volume">Total Additional Volume</label>
+  <div name="total-additional-volume">{{getTotalAdditionalVolume()}}</div>
+  <div formArrayName="additionalVolumes" *ngFor="let exposure of formGroup.get('additionalVolumes').controls; let i = index;">
+    <div [formGroupName]="i">
+      <label for="additional-volume">Additional Volume</label>
+      <input [appIfError]="'error-input'" [appIfDirty]="'dirty-input'" type="number" name="additional-volume" formControlName="volume">
+    </div>
+  </div>
+</form>

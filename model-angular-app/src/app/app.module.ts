@@ -11,6 +11,8 @@ import { ProjectFormRowComponent } from './components/project-form-row/project-f
 import { IfErrorDirective } from './directives/if-error.directive';
 import { IfDirtyDirective } from './directives/if-dirty.directive';
 import { ProjectFormErrorsPipe } from './pipes/project-form-errors.pipe';
+import { ExposureComponent } from './components/exposure/exposure.component';
+import { ExposureFormComponent } from './components/exposure-form/exposure-form.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { ProjectFormErrorsPipe } from './pipes/project-form-errors.pipe';
     IfErrorDirective,
     IfDirtyDirective,
     ProjectFormErrorsPipe,
+    ExposureComponent,
+    ExposureFormComponent,
   ],
   imports: [
     BrowserModule,

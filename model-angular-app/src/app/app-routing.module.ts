@@ -4,6 +4,8 @@ import { ProjectSelectionComponent } from './components/project-selection/projec
 import { ProjectPageComponent } from './components/project-page/project-page.component';
 import { ProjectResolver } from './resolvers/project-resolver';
 import { ExposuresListResolver } from './resolvers/exposures-list-resolver';
+import { ExposureComponent } from './components/exposure/exposure.component';
+import { ExposureResolver } from './resolvers/exposure-resolver.';
 
 const routes: Routes = [
   {
@@ -16,8 +18,18 @@ const routes: Routes = [
     resolve: {
       project: ProjectResolver,
       exposures: ExposuresListResolver
-    }
-  }
+    },
+    children: [
+      {
+        path: 'exposure/:exposureId',
+        outlet: 'exposure-details',
+        component: ExposureComponent,
+        resolve: {
+          exposure: ExposureResolver
+        }
+      }
+    ]
+  },
 ];
 
 @NgModule({

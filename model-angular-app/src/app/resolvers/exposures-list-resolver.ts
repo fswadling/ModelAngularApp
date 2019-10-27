@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ExposureService } from '../backend-services/exposure.service';
-import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot, Resolve } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ExposureListItem } from '../models/exposure-list-item';
 import { shareReplay } from 'rxjs/operators';
@@ -8,7 +8,7 @@ import { shareReplay } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class ExposuresListResolver {
+export class ExposuresListResolver implements Resolve<ExposureListItem[]> {
 
   constructor(private exposuresService: ExposureService) { }
 

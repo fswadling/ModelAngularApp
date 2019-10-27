@@ -14,4 +14,8 @@ export class ProjectFormRowComponent implements OnInit {
   ngOnInit() {
     this.formGroup = this.controlContainer.control as FormGroup;
   }
+
+  getId(): number {
+    return this.formGroup.controls.id.value;
+  }
 }
