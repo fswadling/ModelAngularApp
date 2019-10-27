@@ -22,10 +22,12 @@ const testProjects: Project[] =
   {
     name: 'Project 1',
     id: 0,
+    minimumVolume: 0
   },
   {
     name: 'Project 2',
     id: 1,
+    minimumVolume: 0
   }
 ];
 
