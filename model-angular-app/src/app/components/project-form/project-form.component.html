@@ -1,9 +1,9 @@
 <form [formGroup]="formGroup">
   <label for="name">Project name:</label>
-  <input type="text" name="name" formControlName="name">
+  <input [appIfDirty]="'dirty-input'" type="text" name="name" formControlName="name">
   <div formArrayName="exposures" *ngFor="let exposure of formGroup.get('exposures').controls;">
     <app-project-form-row [formGroup]="exposure"></app-project-form-row>
   </div>
   <label for="minimumVolume">Minimum volume:</label>
-  <input name="minimumVolume" type="number" formControlName="minimumVolume">
+  <input [appIfDirty]="'dirty-input'" name="minimumVolume" type="number" formControlName="minimumVolume">
 </form>

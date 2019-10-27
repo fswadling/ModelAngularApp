@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ProjectFormComponent } from './components/project-form/project-form.component';
 import { ProjectFormRowComponent } from './components/project-form-row/project-form-row.component';
 import { IfErrorDirective } from './directives/if-error.directive';
+import { IfDirtyDirective } from './directives/if-dirty.directive';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { IfErrorDirective } from './directives/if-error.directive';
     ProjectPageComponent,
     ProjectFormComponent,
     ProjectFormRowComponent,
-    IfErrorDirective
+    IfErrorDirective,
+    IfDirtyDirective,
   ],
   imports: [
     BrowserModule,
