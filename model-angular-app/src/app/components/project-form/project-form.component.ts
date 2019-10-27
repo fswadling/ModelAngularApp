@@ -25,11 +25,13 @@ export class ProjectFormComponent implements OnChanges {
   }
 
   createFormGroup(project: Project, exposures: ExposureListItem[]) {
-    return this.formBuilder.group(({
+    return this.formBuilder.group({
       name: [project.name, Validators.required],
       minimumVolume: [project.minimumVolume, Validators.required],
-      exposures: this.formBuilder.array(exposures.map(e => this.formBuilder.group(e)))
-    }),
+      exposures: this.formBuilder.array(exposures.map(e => this.formBuilder.group({
+        volume: [e.volume, Validators.required]
+      })))
+    },
     {
       validators: [
         ExposureVolumesGreaterThanOrEqualToMinimumVolume
