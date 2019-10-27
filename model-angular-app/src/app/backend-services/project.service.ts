@@ -3,7 +3,6 @@ import { Observable, of, timer } from 'rxjs';
 import { Project } from '../models/project';
 import { first, map } from 'rxjs/operators';
 import { ProjectListItem } from '../models/project-list-item';
-import { ProjectPageComponent } from '../components/project-page/project-page.component';
 
 const testProjectListItems: ProjectListItem[] =
 [
