@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { map } from 'rxjs/operators';
+import { ActivatedRoute, Data } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Project } from 'src/app/models/project';
-import { Exposure } from 'src/app/models/exposure';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-project-page',
@@ -14,9 +12,8 @@ export class ProjectPageComponent implements OnInit {
 
   constructor(private actr: ActivatedRoute) { }
 
-  project$: Observable<Project> = this.actr.data.pipe(map(data => data.project));
+  data$: Observable<any> = this.actr.data;
 
   ngOnInit() {
   }
-
 }

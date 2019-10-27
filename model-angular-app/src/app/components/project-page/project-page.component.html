@@ -1,5 +1,5 @@
-<div *ngIf="project$ | async as project; else loading">
-  <app-project-form [project]="project"></app-project-form>
+<div *ngIf="data$ | async as data; else loading">
+  <app-project-form [project]="data.project" [exposures]="data.exposures"></app-project-form>
 </div>
 
 <ng-template #loading>Loading...</ng-template>

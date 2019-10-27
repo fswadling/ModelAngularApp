@@ -22,34 +22,10 @@ const testProjects: Project[] =
   {
     name: 'Project 1',
     id: 0,
-    exposures: [
-      {
-        id: 0,
-        maturityDate: new Date(2020, 1, 1),
-        volume: 1000
-      },
-      {
-        id: 1,
-        maturityDate: new Date(2020, 6, 1),
-        volume: 5000
-      }
-    ]
   },
   {
     name: 'Project 2',
     id: 1,
-    exposures: [
-      {
-        id: 2,
-        maturityDate: new Date(2020, 1, 1),
-        volume: 1000
-      },
-      {
-        id: 3,
-        maturityDate: new Date(2020, 6, 1),
-        volume: 5000
-      }
-    ]
   }
 ];
 

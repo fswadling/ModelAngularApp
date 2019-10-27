@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { Project } from 'src/app/models/project';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { ExposureListItem } from 'src/app/models/exposure-list-item';
 
 @Component({
   selector: 'app-project-form',
@@ -10,6 +11,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 export class ProjectFormComponent implements OnInit, OnChanges {
 
   @Input() project: Project;
+  @Input() exposures: ExposureListItem[];
 
   formGroup: FormGroup;
 
@@ -19,15 +21,14 @@ export class ProjectFormComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    this.formGroup = this.createFormGroup(this.project);
+    debugger;
+    this.formGroup = this.createFormGroup(this.project, this.exposures);
   }
 
-  createFormGroup(project: Project) {
+  createFormGroup(project: Project, exposures: ExposureListItem[]) {
     return this.formBuilder.group({
       name: this.formBuilder.control(project.name),
-      exposures: this.formBuilder.array(project.exposures.map(e => this.formBuilder.group(e)))
+      exposures: this.formBuilder.array(exposures.map(e => this.formBuilder.group(e)))
     });
   }
-
-
 }

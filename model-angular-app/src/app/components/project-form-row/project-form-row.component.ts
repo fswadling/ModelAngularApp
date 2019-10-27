@@ -1,6 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
-import { Exposure } from 'src/app/models/exposure';
-import { FormGroup, FormBuilder, ControlContainer } from '@angular/forms';
+import { Component, OnInit, OnChanges } from '@angular/core';
+import { FormGroup, ControlContainer } from '@angular/forms';
 
 @Component({
   selector: '[formGroup] app-project-form-row, [formGroupName] app-project-form-row',
