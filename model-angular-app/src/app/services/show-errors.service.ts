@@ -7,5 +7,5 @@ export class ShowErrorsService {
 
   constructor() { }
 
-  public showErrors: boolean;
+  public showErrors = true;
 }

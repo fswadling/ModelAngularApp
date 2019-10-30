@@ -5,11 +5,13 @@ import { ExposureListItem } from 'src/app/models/exposure-list-item';
 import { ExposureVolumesGreaterThanOrEqualToMinimumVolume } from './utilities/validators';
 import { Subscription } from 'rxjs';
 import { ProjectUpdateService } from 'src/app/services/project-update.service';
+import { ShowErrorsService } from 'src/app/services/show-errors.service';
 
 @Component({
   selector: 'app-project-form',
   templateUrl: './project-form.component.html',
-  styleUrls: ['./project-form.component.scss']
+  styleUrls: ['./project-form.component.scss'],
+  providers: [ShowErrorsService]
 })
 export class ProjectFormComponent implements OnInit, OnDestroy {
 

@@ -1,6 +1,5 @@
 import { Directive, Input, HostBinding, HostListener, OnInit, OnDestroy, Renderer2, ElementRef, DoCheck } from '@angular/core';
 import { NgControl } from '@angular/forms';
-import { Subscription } from 'rxjs';
 import { ShowErrorsService } from '../services/show-errors.service';
 
 @Directive({
