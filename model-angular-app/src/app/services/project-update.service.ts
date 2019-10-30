@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { ReplaySubject } from 'rxjs';
 import { Exposure } from 'src/app/models/exposure';
 import { map } from 'rxjs/operators';
 
@@ -7,15 +7,15 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ProjectUpdateService {
-  private subject = new BehaviorSubject<Exposure[]>([]);
+  private subject = new ReplaySubject<Exposure[]>();
 
   constructor() { }
 
-  public exposures$ = this.subject.asObservable().pipe(
-    map(exps => JSON.parse(JSON.stringify(exps)))
+  exposures$ = this.subject.pipe(
+    map(exps => JSON.parse(JSON.stringify(exps)) as Exposure[]),
   );
 
-  public update(exposures: Exposure[]) {
+  update(exposures: Exposure[]) {
     this.subject.next(JSON.parse(JSON.stringify(exposures)));
   }
 }

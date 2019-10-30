@@ -1,7 +1,9 @@
 <h1>Project Component</h1>
+
 <div *ngIf="data$ | async as data">
-  <app-project-form [project]="data.project" [exposures]="data.exposures"></app-project-form>
+  <app-project-form [project]="data[0]" [exposures]="data[1]"></app-project-form>
 </div>
+
 <div *ngIf="isRouting$ | async">
   <ng-container *ngTemplateOutlet="loading"></ng-container>
 </div>
