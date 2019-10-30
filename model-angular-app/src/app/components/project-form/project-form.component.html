@@ -1,4 +1,5 @@
 <form [formGroup]="formGroup">
+  <app-show-errors></app-show-errors>
   <label for="name">Project name:</label>
   <input [appIfError]="'error-input'" [appIfDirty]="'dirty-input'" type="text" name="name" formControlName="name">
   <div formArrayName="exposures" *ngFor="let exposure of formGroup.get('exposures').controls;">

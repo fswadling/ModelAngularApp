@@ -6,6 +6,7 @@ import { ProjectUpdateService } from 'src/app/services/project-update.service';
 import { Exposure } from 'src/app/models/exposure';
 import { map, switchMap } from 'rxjs/operators';
 import { Project } from 'src/app/models/project';
+import { ExposureListItem } from 'src/app/models/exposure-list-item';
 
 @Component({
   selector: 'app-project-page',
@@ -20,7 +21,7 @@ export class ProjectPageComponent {
 
   isRouting$ = this.routerLoadingService.isRouting$;
 
-  private exposures$: Observable<Exposure[]> = this.projectUpdateService.exposures$;
+  private exposures$: Observable<ExposureListItem[]> = this.projectUpdateService.exposures$;
 
   private project$: Observable<Project> = this.actr.data.pipe(map(data => data.project as Project));
 

@@ -13,6 +13,8 @@ import { IfDirtyDirective } from './directives/if-dirty.directive';
 import { ProjectFormErrorsPipe } from './pipes/project-form-errors.pipe';
 import { ExposureComponent } from './components/exposure/exposure.component';
 import { ExposureFormComponent } from './components/exposure-form/exposure-form.component';
+import { ProjectTotalVolumeComponent } from './components/project-total-volume/project-total-volume.component';
+import { ShowErrorsComponent } from './components/show-errors/show-errors.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { ExposureFormComponent } from './components/exposure-form/exposure-form.
     ProjectFormErrorsPipe,
     ExposureComponent,
     ExposureFormComponent,
+    ProjectTotalVolumeComponent,
+    ShowErrorsComponent,
   ],
   imports: [
     BrowserModule,

@@ -4,6 +4,8 @@
   <app-project-form [project]="data[0]" [exposures]="data[1]"></app-project-form>
 </div>
 
+<app-project-total-volume></app-project-total-volume>
+
 <div *ngIf="isRouting$ | async">
   <ng-container *ngTemplateOutlet="loading"></ng-container>
 </div>
