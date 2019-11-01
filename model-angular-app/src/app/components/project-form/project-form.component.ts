@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, OnChanges } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ExposureVolumesGreaterThanOrEqualToMinimumVolume } from './utilities/validators';
 import { Subscription } from 'rxjs';
@@ -12,7 +12,7 @@ import { ProjectFormData } from 'src/app/models/project-form-data';
   styleUrls: ['./project-form.component.scss'],
   providers: [ShowErrorsService]
 })
-export class ProjectFormComponent implements OnInit, OnDestroy {
+export class ProjectFormComponent implements OnInit, OnChanges, OnDestroy {
 
   @Input() projectFormData: ProjectFormData;
 
@@ -26,6 +26,12 @@ export class ProjectFormComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.formGroup = this.createFormGroup(this.projectFormData);
     this.valueChangesSubscription = this.setupUpdateService(this.formGroup);
+  }
+
+  ngOnChanges() {
+    if (this.formGroup) {
+      this.formGroup.patchValue(this.projectFormData);
+    }
   }
 
   ngOnDestroy() {
