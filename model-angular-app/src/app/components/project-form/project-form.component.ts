@@ -1,11 +1,10 @@
-import { Component, Input, OnChanges, OnInit, OnDestroy } from '@angular/core';
-import { Project } from 'src/app/models/project';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ExposureListItem } from 'src/app/models/exposure-list-item';
 import { ExposureVolumesGreaterThanOrEqualToMinimumVolume } from './utilities/validators';
 import { Subscription } from 'rxjs';
 import { ProjectUpdateService } from 'src/app/services/project-update.service';
 import { ShowErrorsService } from 'src/app/services/show-errors.service';
+import { ProjectFormData } from 'src/app/models/project-form-data';
 
 @Component({
   selector: 'app-project-form',
@@ -15,8 +14,7 @@ import { ShowErrorsService } from 'src/app/services/show-errors.service';
 })
 export class ProjectFormComponent implements OnInit, OnDestroy {
 
-  @Input() project: Project;
-  @Input() exposures: ExposureListItem[];
+  @Input() projectFormData: ProjectFormData;
 
   formGroup: FormGroup;
   private valueChangesSubscription: Subscription = undefined;
@@ -26,7 +24,7 @@ export class ProjectFormComponent implements OnInit, OnDestroy {
     private projectUpdateService: ProjectUpdateService) { }
 
   ngOnInit() {
-    this.formGroup = this.createFormGroup(this.project, this.exposures);
+    this.formGroup = this.createFormGroup(this.projectFormData);
     this.valueChangesSubscription = this.setupUpdateService(this.formGroup);
   }
 
@@ -34,20 +32,17 @@ export class ProjectFormComponent implements OnInit, OnDestroy {
     this.valueChangesSubscription.unsubscribe();
   }
 
-  private pushValueChangeToUpdateService(value) {
-    const exposures = value as ExposureListItem[];
-    this.projectUpdateService.update(exposures);
-  }
-
   private setupUpdateService(formGroup: FormGroup): Subscription {
-    return formGroup.controls.exposures.valueChanges.subscribe(value => this.pushValueChangeToUpdateService(value));
+    return formGroup.valueChanges.subscribe(
+      value => this.projectUpdateService.update(value)
+      );
   }
 
-  createFormGroup(project: Project, exposures: ExposureListItem[]) {
+  createFormGroup(projectFormData: ProjectFormData) {
     return this.formBuilder.group({
-      name: [project.name, Validators.required],
-      minimumVolume: [project.minimumVolume, Validators.required],
-      exposures: this.formBuilder.array(exposures.map(e => this.formBuilder.group({
+      name: [projectFormData.name, Validators.required],
+      minimumVolume: [projectFormData.minimumVolume, Validators.required],
+      exposures: this.formBuilder.array(projectFormData.exposures.map(e => this.formBuilder.group({
         id: e.id,
         volume: [e.volume, Validators.required]
       })))

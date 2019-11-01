@@ -11,8 +11,8 @@ export class ProjectTotalVolumeComponent {
 
   constructor(private projectUpdateService: ProjectUpdateService) { }
 
-  totalVolume$ = this.projectUpdateService.exposures$.pipe(map(exposures => {
-    return exposures
+  totalVolume$ = this.projectUpdateService.projectFormData$.pipe(map(projectFormData => {
+    return projectFormData.exposures
       .map(e => e.volume)
       .reduce((sum, current) => sum + current, 0);
   }));

@@ -1,7 +1,7 @@
 <h1>Project Component</h1>
 
-<div *ngIf="data$ | async as data">
-  <app-project-form [project]="data[0]" [exposures]="data[1]"></app-project-form>
+<div *ngIf="projectFormData$ | async as projectFormData">
+  <app-project-form [projectFormData]="projectFormData"></app-project-form>
 </div>
 
 <app-project-total-volume></app-project-total-volume>

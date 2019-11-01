@@ -1,22 +1,22 @@
 import { Injectable } from '@angular/core';
-import { ReplaySubject } from 'rxjs';
-import { Exposure } from 'src/app/models/exposure';
+import { ReplaySubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { ExposureListItem } from '../models/exposure-list-item';
+import { ProjectFormData } from '../models/project-form-data';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectUpdateService {
-  private subject = new ReplaySubject<ExposureListItem[]>();
+  private subject = new ReplaySubject<ProjectFormData>();
 
   constructor() { }
 
-  exposures$ = this.subject.pipe(
-    map(exps => JSON.parse(JSON.stringify(exps)) as ExposureListItem[]),
+  projectFormData$ = this.subject.pipe(
+    map(exps => JSON.parse(JSON.stringify(exps)) as ProjectFormData),
   );
 
-  update(exposures: ExposureListItem[]) {
+  update(exposures: ProjectFormData): Observable<ProjectFormData> {
     this.subject.next(JSON.parse(JSON.stringify(exposures)));
+    return this.projectFormData$;
   }
 }

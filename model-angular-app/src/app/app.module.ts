@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProjectSelectionComponent } from './components/project-selection/project-selection.component';
 import { ProjectPageComponent } from './components/project-page/project-page.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ProjectFormComponent } from './components/project-form/project-form.component';
 import { ProjectFormRowComponent } from './components/project-form-row/project-form-row.component';
 import { IfErrorDirective } from './directives/if-error.directive';
@@ -34,7 +34,8 @@ import { ShowErrorsComponent } from './components/show-errors/show-errors.compon
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

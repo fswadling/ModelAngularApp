@@ -13,7 +13,11 @@ export class ShowErrorsComponent implements OnInit {
   ngOnInit() {
   }
 
-  onChange(event) {
-    this.showErrorsService.showErrors = event.target.checked;
+  get showErrors() {
+    return this.showErrorsService.showErrors;
+  }
+
+  set showErrors(value: boolean) {
+    this.showErrorsService.showErrors = value;
   }
 }
