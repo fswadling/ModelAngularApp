@@ -5,3 +5,6 @@
 </div>
 <label for="project-name">Project Name:</label>
 <input [appIfError]="'error-input'" [appIfDirty]="'dirty-input'" name="project-name" [formControl]="projectName">
+<div ngClass="error-text" *ngFor="let error of (projectName | projectFormErrors)">
+  {{error}}
+</div>

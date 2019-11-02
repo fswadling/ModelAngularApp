@@ -17,7 +17,9 @@ export function ExposureVolumesGreaterThanOrEqualToMinimumVolume(control: Abstra
 
     if (exposureListItem.volume < minimumVolume) {
       isExposureVolumeInvalid = true;
-      exposureFormGroup.controls.volume.setErrors({...errors});
+      const currentErrors = exposureFormGroup.controls.volume.errors;
+      const allErrors = {...errors, ...currentErrors};
+      exposureFormGroup.controls.volume.setErrors(allErrors);
     } else if (exposureFormGroup.controls.volume.hasError('violatesMinimumVolume')) {
       exposureFormGroup.controls.volume.setErrors({violatesMinimumVolume: null});
       exposureFormGroup.controls.volume.updateValueAndValidity();

@@ -28,3 +28,37 @@ export function patchSettingChangedPropertiesDirty(control: AbstractControl, new
   control.patchValue(newValue, options);
   setChangedControlsAsDirty(control, oldValue);
 }
+
+function removeDuplicates(strings: string[]) {
+  return strings.filter((elem, index, self) =>
+    index === self.indexOf(elem)
+  );
+}
+
+function _getAllErrors(control: AbstractControl): string[] {
+  if (control instanceof FormControl) {
+    if (!control.errors) {
+      return [];
+    }
+    return Object.entries(control.errors)
+      .filter(([key, hasError]) => hasError)
+      .map(([key, _]) => key);
+  }
+  if (control instanceof FormGroup) {
+    return Object.entries(control.controls)
+      .map(([_, subControl]) => _getAllErrors(subControl))
+      .reduce((a, b) => a.concat(b));
+  }
+  if (control instanceof FormArray) {
+    return control.controls
+      .map(subControl => _getAllErrors(subControl))
+      .reduce((a, b) => a.concat(b));
+  }
+  return [];
+}
+
+export function getAllErrors(control: AbstractControl): string[] {
+  let errors = _getAllErrors(control);
+  errors = removeDuplicates(errors);
+  return errors;
+}
