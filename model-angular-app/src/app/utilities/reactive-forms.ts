@@ -1,6 +1,6 @@
 import { AbstractControl, FormControl, FormArray, FormGroup } from '@angular/forms';
 
-export function setChangedControlsAsDirty(control, oldValue) {
+export function setChangedControlsAsDirty(control: AbstractControl, oldValue) {
   if (control instanceof FormControl) {
     if (oldValue !== control.value) {
       control.markAsDirty();
@@ -21,4 +21,10 @@ export function setChangedControlsAsDirty(control, oldValue) {
     });
   }
   return;
+}
+
+export function patchSettingChangedPropertiesDirty(control: AbstractControl, newValue, options?: Object) {
+  const oldValue = control.value;
+  control.patchValue(newValue, options);
+  setChangedControlsAsDirty(control, oldValue);
 }

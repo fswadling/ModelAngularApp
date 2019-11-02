@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { ProjectUpdateService } from 'src/app/services/project-update.service';
 import { ShowErrorsService } from 'src/app/services/show-errors.service';
 import { ProjectFormData } from 'src/app/models/project-form-data';
-import { setChangedControlsAsDirty } from 'src/app/utilities/reactive-forms';
+import { setChangedControlsAsDirty, patchSettingChangedPropertiesDirty } from 'src/app/utilities/reactive-forms';
 
 @Component({
   selector: 'app-project-form',
@@ -31,9 +31,7 @@ export class ProjectFormComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnChanges() {
     if (this.formGroup) {
-      const oldValue = this.formGroup.value;
-      this.formGroup.patchValue(this.projectFormData, { emitEvent: false });
-      setChangedControlsAsDirty(this.formGroup, oldValue);
+      patchSettingChangedPropertiesDirty(this.formGroup, this.projectFormData, { emitEvent: false });
     }
   }
 

@@ -1,8 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ProjectUpdateService } from 'src/app/services/project-update.service';
-import { map, takeUntil } from 'rxjs/operators';
+import { map, takeUntil, first, skip } from 'rxjs/operators';
 import { FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
+import { patchSettingChangedPropertiesDirty } from 'src/app/utilities/reactive-forms';
 
 @Component({
   selector: 'app-project-total-volume',
@@ -29,9 +30,17 @@ export class ProjectTotalVolumeComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.projectName$.pipe(
+      first(),
       takeUntil(this.unsubscribe$)
       ).subscribe(value => {
-      this.projectName.patchValue(value, { emitEvent: false});
+        this.projectName.patchValue(value, { emitEvent: false });
+    });
+
+    this.projectName$.pipe(
+      skip(1),
+      takeUntil(this.unsubscribe$)
+      ).subscribe(value => {
+        patchSettingChangedPropertiesDirty(this.projectName, value, { emitEvent: false });
     });
 
     this.projectName.valueChanges.pipe(
