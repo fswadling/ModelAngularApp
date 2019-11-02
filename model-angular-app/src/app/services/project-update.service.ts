@@ -15,19 +15,7 @@ export class ProjectUpdateService {
     map(exps => JSON.parse(JSON.stringify(exps)) as ProjectFormData),
   );
 
-  update(projectFormData: ProjectFormData): Observable<ProjectFormData> {
+  update(projectFormData: ProjectFormData): void {
     this.subject.next(JSON.parse(JSON.stringify(projectFormData)));
-    return this.projectFormData$;
-  }
-
-  mutate(mutator: (projectUpdateServiceData: ProjectFormData) => ProjectFormData)
-  : Observable<ProjectFormData> {
-    return this.projectFormData$.pipe(
-      first(),
-      switchMap(data => {
-        const newData = mutator(data);
-        return this.update(newData);
-      })
-    );
   }
 }

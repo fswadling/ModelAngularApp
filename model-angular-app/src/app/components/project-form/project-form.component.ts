@@ -30,7 +30,7 @@ export class ProjectFormComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnChanges() {
     if (this.formGroup) {
-      this.formGroup.patchValue(this.projectFormData);
+      this.formGroup.patchValue(this.projectFormData, { emitEvent: false });
     }
   }
 
@@ -39,9 +39,9 @@ export class ProjectFormComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   private setupUpdateService(formGroup: FormGroup): Subscription {
-    return formGroup.valueChanges.pipe(
-      switchMap(value => this.projectUpdateService.updateProjectFormData(value))
-    ).subscribe();
+    return formGroup.valueChanges.subscribe(value => {
+      this.projectUpdateService.update(value);
+    });
   }
 
   createFormGroup(projectFormData: ProjectFormData) {

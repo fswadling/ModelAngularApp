@@ -23,7 +23,8 @@ export class ProjectPageComponent {
   projectFormData$ = this.actr.data.pipe(
     switchMap(data => {
       const formData = this.convertToProjectFormData(data.project, data.exposures);
-      return this.projectUpdateService.update(formData);
+      this.projectUpdateService.update(formData);
+      return this.projectUpdateService.projectFormData$;
     })
   );
 
