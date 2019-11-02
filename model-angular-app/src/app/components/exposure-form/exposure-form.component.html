@@ -8,3 +8,6 @@
     </div>
   </div>
 </form>
+<div ngClass="error-text" *ngFor="let error of (formGroup | projectFormErrors)">
+  {{error}}
+</div>
