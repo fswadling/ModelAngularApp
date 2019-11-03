@@ -1,4 +1,4 @@
-import { Directive, Input, HostBinding, OnInit, DoCheck, Renderer2, ElementRef } from '@angular/core';
+import { Directive, Input, DoCheck, Renderer2, ElementRef } from '@angular/core';
 import { NgControl } from '@angular/forms';
 
 @Directive({

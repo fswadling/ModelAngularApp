@@ -14,7 +14,6 @@ const stringMap = new Map<string, string>([
 export class ProjectFormErrorsPipe implements PipeTransform {
 
   transform(value: FormGroup): string[] {
-    debugger;
     let errors: string[] = getAllErrors(value);
     errors = errors.map(error => stringMap.get(error));
     return errors;
