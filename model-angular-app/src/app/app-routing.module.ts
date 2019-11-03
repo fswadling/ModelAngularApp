@@ -22,7 +22,7 @@ const routes: Routes = [
     children: [
       {
         path: 'exposure/:exposureId',
-        outlet: 'exposure-details',
+        // outlet: 'exposure-details',
         component: ExposureComponent,
         resolve: {
           exposure: ExposureResolver
