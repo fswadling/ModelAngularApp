@@ -15,6 +15,7 @@ import { ExposureComponent } from './components/exposure/exposure.component';
 import { ExposureFormComponent } from './components/exposure-form/exposure-form.component';
 import { ProjectTotalVolumeComponent } from './components/project-total-volume/project-total-volume.component';
 import { ShowErrorsComponent } from './components/show-errors/show-errors.component';
+import { TotalAdditionalVolumePipe } from './pipes/total-additional-volume.pipe';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { ShowErrorsComponent } from './components/show-errors/show-errors.compon
     ExposureFormComponent,
     ProjectTotalVolumeComponent,
     ShowErrorsComponent,
+    TotalAdditionalVolumePipe,
   ],
   imports: [
     BrowserModule,

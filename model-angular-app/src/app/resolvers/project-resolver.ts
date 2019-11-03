@@ -3,7 +3,7 @@ import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/r
 import { Project } from '../models/project';
 import { Observable } from 'rxjs';
 import { ProjectService } from '../backend-services/project.service';
-import { tap, share, shareReplay } from 'rxjs/operators';
+import { shareReplay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'

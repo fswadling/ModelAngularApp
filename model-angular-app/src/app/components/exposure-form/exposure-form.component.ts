@@ -18,13 +18,6 @@ export class ExposureFormComponent implements OnChanges {
     this.formGroup = this.createFormGroup(this.exposure);
   }
 
-  getTotalAdditionalVolume() {
-    const formArray = this.formGroup.controls.additionalVolumes as FormArray;
-    return formArray.controls
-      .map(x => x.value.volume)
-      .reduce((sum, current) => sum + current, 0);
-  }
-
   private createFormGroup(exposure: Exposure) {
     return this.formBuilder.group({
       volume: exposure.volume,
