@@ -1,11 +1,11 @@
 import { Component, Input, OnInit, OnDestroy, OnChanges } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ExposureVolumesGreaterThanOrEqualToMinimumVolume } from './utilities/validators';
+import { FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { ProjectUpdateService } from 'src/app/services/project-update.service';
 import { ShowErrorsService } from 'src/app/services/show-errors.service';
 import { ProjectFormData } from 'src/app/models/project-form-data';
-import { setChangedControlsAsDirty, patchSettingChangedPropertiesDirty } from 'src/app/utilities/reactive-forms';
+import { patchSettingChangedPropertiesDirty } from 'src/app/utilities/reactive-forms';
+import { CreateProjectFormService } from 'src/app/services/create-project-form.service';
 
 @Component({
   selector: 'app-project-form',
@@ -21,11 +21,11 @@ export class ProjectFormComponent implements OnInit, OnChanges, OnDestroy {
   private valueChangesSubscription: Subscription = undefined;
 
   constructor(
-    private formBuilder: FormBuilder,
+    private creatProjectFormService: CreateProjectFormService,
     private projectUpdateService: ProjectUpdateService) { }
 
   ngOnInit() {
-    this.formGroup = this.createFormGroup(this.projectFormData);
+    this.formGroup = this.creatProjectFormService.createFormGroup(this.projectFormData);
     this.valueChangesSubscription = this.setupUpdateService(this.formGroup);
   }
 
@@ -42,22 +42,6 @@ export class ProjectFormComponent implements OnInit, OnChanges, OnDestroy {
   private setupUpdateService(formGroup: FormGroup): Subscription {
     return formGroup.valueChanges.subscribe(value => {
       this.projectUpdateService.update(value);
-    });
-  }
-
-  createFormGroup(projectFormData: ProjectFormData) {
-    return this.formBuilder.group({
-      name: [projectFormData.name, Validators.required],
-      minimumVolume: [projectFormData.minimumVolume, Validators.required],
-      exposures: this.formBuilder.array(projectFormData.exposures.map(e => this.formBuilder.group({
-        id: e.id,
-        volume: [e.volume, Validators.required]
-      })))
-    },
-    {
-      validators: [
-        ExposureVolumesGreaterThanOrEqualToMinimumVolume
-      ]
     });
   }
 }

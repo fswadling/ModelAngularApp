@@ -1,6 +1,6 @@
 import { AbstractControl, ValidationErrors, FormGroup, FormArray } from '@angular/forms';
-import { ProjectFormData } from '../../../models/project-form-data';
 import { ExposureListItem } from 'src/app/models/exposure-list-item';
+import { ProjectFormData } from 'src/app/models/project-form-data';
 
 export function ExposureVolumesGreaterThanOrEqualToMinimumVolume(control: AbstractControl): ValidationErrors | null {
   const formGroup = control as FormGroup;
