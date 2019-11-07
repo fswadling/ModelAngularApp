@@ -15,7 +15,7 @@ export class ProjectUpdateService {
     return this.subject.pipe(
       map(exps => JSON.parse(JSON.stringify(exps)) as ProjectFormData),
     );
-  };
+  }
 
   update(projectFormData: ProjectFormData): void {
     this.subject.next(JSON.parse(JSON.stringify(projectFormData)));
