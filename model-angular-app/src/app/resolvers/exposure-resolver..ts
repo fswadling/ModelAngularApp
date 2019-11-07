@@ -3,6 +3,7 @@ import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/r
 import { Exposure } from '../models/exposure';
 import { Observable } from 'rxjs';
 import { ExposureService } from '../backend-services/exposure.service';
+import { shareReplay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,8 @@ export class ExposureResolver implements Resolve<Exposure> {
   resolve(route: ActivatedRouteSnapshot, rstate: RouterStateSnapshot): Observable<Exposure> {
     const projectId: number = Number(route.parent.params.projectId);
     const exposureId: number = Number(route.params.exposureId);
-    return this.exposureService.getExposure(projectId, exposureId);
+    return this.exposureService.getExposure(projectId, exposureId).pipe(
+      shareReplay(2)
+    );
   }
 }
