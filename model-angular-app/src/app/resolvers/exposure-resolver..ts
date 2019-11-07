@@ -16,7 +16,7 @@ export class ExposureResolver implements Resolve<Exposure> {
     const projectId: number = Number(route.parent.params.projectId);
     const exposureId: number = Number(route.params.exposureId);
     return this.exposureService.getExposure(projectId, exposureId).pipe(
-      shareReplay(2)
+      shareReplay(1)
     );
   }
 }
