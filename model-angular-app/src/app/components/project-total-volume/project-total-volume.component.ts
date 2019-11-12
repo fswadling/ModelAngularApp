@@ -4,11 +4,13 @@ import { map, takeUntil, first, skip } from 'rxjs/operators';
 import { FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { patchSettingChangedPropertiesDirty } from 'src/app/utilities/reactive-forms';
+import { ShowErrorsService } from 'src/app/services/show-errors.service';
 
 @Component({
   selector: 'app-project-total-volume',
   templateUrl: './project-total-volume.component.html',
-  styleUrls: ['./project-total-volume.component.scss', './../project-form/project-form.component.scss']
+  styleUrls: ['./project-total-volume.component.scss', './../project-form/project-form.component.scss'],
+  providers: [ShowErrorsService]
 })
 export class ProjectTotalVolumeComponent implements OnInit, OnDestroy {
 
